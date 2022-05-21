@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+        p {
+            font-size: 250%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<a href="/works"><p>| Works |</p></a>
+<a href="/masters"><p> Masters </p></a>
+<p style="color: darkcyan">| Services |</p>
+<a href="/cars"><p> Cars |</p></a>
+<hr/>
+<br>
+<div th:switch="${services}">
+    <h2 th:case="null">No services in garage!</h2>
+    <div th:case="*">
+        <table>
+            <thead st>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Cost OUR</th>
+                <th>Cost Foreign</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="service : ${services}">
+                <td th:text="${service.getId()}"></td>
+                <td th:text="${service.getName()}"></td>
+                <td th:text="${service.getCost_our()}"></td>
+                <td th:text="${service.getCost_foreign()}"></td>
+                <div th:switch="${#httpServletRequest.remoteUser}">
+                    <td th:case="admin" width="40">
+                        <a th:href="@{/services/{id}/edit(id=${service.getId()})}">
+                            <input type="button" value="Edit"/>
+                        </a>
+                    </td>
+                </div>
+                <div th:switch="${#httpServletRequest.remoteUser}">
+                    <td th:case="admin" width="50">
+                        <form th:method="POST" th:action="@{services/{id}/delete(id=${service.getId()})}">
+                            <input type="submit" value="Delete"/>
+                        </form>
+                    </td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div th:switch="${message}">
+            <a style="color:red" th:case="*" th:text="${message}"></a>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<div th:switch="${#httpServletRequest.remoteUser}">
+    <a href="services/new">
+        <input th:case="admin" type="button" value="Add new service" />
+    </a>
+</div>
+
+<br/>
+<hr/>
+<a th:href="@{/}"><input type="button" value="Back to home page"></a>
+</body>
+</html>

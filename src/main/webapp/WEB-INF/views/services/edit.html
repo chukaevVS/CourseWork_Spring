@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit service</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/services/{id}/edit(id=${service.getId()})}"
+      th:object="${service}">
+
+    <label for="name">New name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br>
+    <label for="cost_our">New cost our: </label>
+    <input type="text" th:field="*{cost_our}" id="cost_our"/>
+    <br>
+    <label for="cost_foreign">New cost foreign: </label>
+    <input type="text" th:field="*{cost_foreign}" id="cost_foreign"/>
+    <br>
+    <input type="submit" value="Edit!"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit master</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/cars/{id}/edit(id=${car.getId()})}"
+      th:object="${car}">
+
+    <label for="num">New num: </label>
+    <input type="text" th:field="*{num}" id="num"/>
+    <br>
+    <label for="color">New color: </label>
+    <input type="text" th:field="*{color}" id="color"/>
+    <br>
+    <label for="mark">New mark: </label>
+    <input type="text" th:field="*{mark}" id="mark"/>
+    <br>
+    <label for="isForeign">Foreign or not(1 - foreign; 0 - our): </label>
+    <input type="text" th:field="*{isForeign}" id="isForeign"/>
+    <br>
+    <input type="submit" value="Edit!"/>
+</form>
+</body>
+</html>

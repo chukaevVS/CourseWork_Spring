@@ -1,0 +1,27 @@
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/cars}" th:object="${car}">
+    <label for="num">Num: </label>
+    <input type="text" th:field="*{num}" id="num" />
+
+    <label for="color">Color: </label>
+    <input type="text" th:field="*{color}" id="color" />
+
+    <label for="mark">Mark: </label>
+    <input type="text" th:field="*{mark}" id="mark" />
+
+    <label for="isForeign">Is Foreign: </label>
+    <input type="text" th:field="*{isForeign()}" id="isForeign" />
+
+    <br>
+
+    <input type="submit" value="Add car"/>
+</form>
+</body>
+</html>-->

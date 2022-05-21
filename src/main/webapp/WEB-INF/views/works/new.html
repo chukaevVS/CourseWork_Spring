@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New work</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/works}" th:object="${work}">
+    <label>Car: </label>
+    <select name="car" required="required">
+        <option disabled>Choose car</option>
+        <tr th:each="car : ${cars}">
+            <option th:text="${car.getNum()}"></option>
+        </tr>
+    </select>
+    <br>
+    <label>Service: </label>
+    <select name="service" required="required">
+        <option disabled>Choose service</option>
+        <tr th:each="service : ${services}">
+            <option th:text="${service.getName()}"></option>
+        </tr>
+    </select>
+    <br>
+    <label>Master: </label>
+    <select name="master" required="required">
+        <option disabled>Choose master</option>
+        <tr th:each="master : ${masters}">
+            <option th:text="${master.getName()}"></option>
+        </tr>
+    </select>
+    <br>
+    <label for="date">Date work: </label>
+    <input type="text" name="date" id="date"/>
+    <br>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

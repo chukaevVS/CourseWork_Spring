@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Works</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+        p {
+            font-size: 250%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<p style="color: darkcyan">| Works |</p>
+<a href="/masters"><p> Masters </p></a>
+<a href="/services"><p>| Services |</p></a>
+<a href="/cars"><p> Cars |</p></a>
+<hr/>
+<br>
+<div th:switch="${works}">
+    <h2 th:case="null">Garage is empty!</h2>
+    <div th:case="*">
+        <table>
+            <thead st>
+            <tr>
+                <th>Id</th>
+                <th width="100">Date Work</th>
+                <th>Car ID</th>
+                <th>Master ID</th>
+                <th>Service ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="work : ${works}">
+                <td th:switch="${#httpServletRequest.remoteUser}">
+                    <a th:case="admin" th:href="@{/works/{id}(id=${work.getId()})}" th:text="${work.getId()}"></a>
+                    <a th:case="null" th:text="${work.getId()}"></a>
+
+                </td>
+                <td th:text="${work.getDateWork()}"></td>
+                <td th:text="${work.getCar().getId()}"></td>
+                <td th:text="${work.getMaster().getId()}"></td>
+                <td th:text="${work.getService().getId()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<br/>
+
+<div th:switch="${#httpServletRequest.remoteUser}">
+    <a href="works/new">
+        <input th:case="admin" type="button" value="Add new work" />
+    </a>
+</div>
+
+<hr/>
+<a th:href="@{/}"><input type="button" value="Back to home page"></a>
+</body>
+</html>

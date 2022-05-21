@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+<h1 style="background: lightgrey">Info</h1>
+
+<br>
+<a th:text="'Master: ' + ${work.getMaster().getName()}"> </a>
+<br/>
+<a th:text="'Car: ' + ${work.getCar().getMark()} + '; num: ' + ${work.getCar().getNum()}"> </a>
+<br/>
+<a th:text="'Service: ' + ${work.getService().getName()}"> </a>
+<br/>
+<br/>
+<form th:method="POST" th:action="@{/works/{id}(id=${work.getId()})}">
+<input type="submit" value="Delete work"/>
+</form>
+<br>
+<a th:href="@{/works/{id}/edit(id=${work.getId()})}">
+    <input type="button" value="Edit work">
+</a>
+<hr/>
+
+</body>
+</html>

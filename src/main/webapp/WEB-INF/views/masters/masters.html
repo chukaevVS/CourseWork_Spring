@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Masters</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+        p {
+            font-size: 250%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<a href="/works"><p>| Works |</p></a>
+<p style="color: darkcyan"> Masters </p>
+<a href="/services"><p>| Services |</p></a>
+<a href="/cars"><p> Cars |</p></a>
+<hr/>
+<br>
+<div th:switch="${masters}">
+    <h2 th:case="null">No masters in garage!</h2>
+    <div th:case="*">
+        <table>
+            <thead st>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="master : ${masters}">
+                <td th:text="${master.getId()}"></td>
+                <td th:text="${master.getName()}"></td>
+                <div th:switch="${#httpServletRequest.remoteUser}">
+                <td th:case="admin" width="40">
+                    <a th:href="@{/masters/{id}/edit(id=${master.getId()})}">
+                        <input type="button" value="Edit"/>
+                    </a>
+                </td>
+                </div>
+                <div th:switch="${#httpServletRequest.remoteUser}">
+                <td th:case="admin" width="50">
+                    <form th:method="POST" th:action="@{masters/{id}/delete(id=${master.getId()})}">
+                        <input type="submit" value="Delete"/>
+                    </form>
+                </td>
+                </div>
+
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <div th:switch="${message}">
+            <a style="color:red" th:case="*" th:text="${message}"></a>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<div th:switch="${#httpServletRequest.remoteUser}">
+    <a href="masters/new">
+        <input th:case="admin" type="button" value="Add new master" />
+    </a>
+</div>
+
+<br/>
+<hr/>
+<a th:href="@{/}"><input type="button" value="Back to home page"></a>
+</body>
+</html>

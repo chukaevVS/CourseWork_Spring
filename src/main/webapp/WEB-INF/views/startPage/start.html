@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+    <style type="text/css">
+        p {
+            font-size: 250%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<a href="/works"><p>| Works |</p></a>
+<a href="/masters"><p> Masters </p></a>
+<a href="/services"><p>| Services |</p></a>
+<a href="/cars"><p> Cars |</p></a>
+
+<br>
+<div th:switch="${#httpServletRequest.remoteUser}">
+    <a th:href="@{/login}">
+        <input th:case="null" type="button" value="Log in"/>
+    </a>
+</div>
+
+<div th:switch="${#httpServletRequest.remoteUser}">
+    <form th:action="@{/logout}" method="post">
+        <input th:case="admin" type="submit" value="Sign Out"/>
+    </form>
+</div>
+</body>
+</html>

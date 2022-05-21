@@ -1,0 +1,6 @@
+coursework\models\Master.class
+coursework\controllers\CarController.class
+coursework\GarageApplication.class
+coursework\models\Car.class
+coursework\repositories\CarsRepository.class
+coursework\config\SpringConfig.class

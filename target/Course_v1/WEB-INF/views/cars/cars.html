@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+<h1>Departments:</h1>
+<div th:switch="${cars}">
+    <h2 th:case="null">Departments not found</h2>
+    <div th:case="*">
+        <table>
+            <thead st>
+            <tr>
+                <th>Id</th>
+                <th>Num</th>
+                <th>Color</th>
+                <th>Mark</th>
+                <th>Is Foreign</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="car : ${cars}">
+                <td th:text="${car.getId()}"></td>
+                <td th:text="${car.getNum()}"></td>
+                <td th:text="${car.getColor()}"></td>
+                <td th:text="${car.getMark()}"></td>
+                <td th:text="${car.isForeign()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<br/>
+<hr/>
+
+</body>
+</html>

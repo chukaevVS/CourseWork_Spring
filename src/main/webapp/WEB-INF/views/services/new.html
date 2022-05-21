@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New master</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/services}" th:object="${service}">
+    <label for="name">Name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br>
+    <label for="our">Cost OUR: </label>
+    <input type="text" th:field="*{cost_our}" id="our"/>
+    <br>
+    <label for="foreign">Cost FOREIGN: </label>
+    <input type="text" th:field="*{cost_foreign}" id="foreign"/>
+    <br>
+    <input type="submit" value="Create!"/>
+</form>
+
+</body>
+</html>

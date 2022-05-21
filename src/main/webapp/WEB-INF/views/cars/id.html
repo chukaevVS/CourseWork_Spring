@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+    <style type="text/css">
+        TABLE {
+            width: 300px;
+            border-collapse: collapse;
+        }
+        TD, TH {
+            padding: 3px;
+            border: 1px solid black;
+        }
+        TH {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+<h1 style="background: lightgrey">Info</h1>
+<div th:switch="${works}">
+    <h2 th:case="null">Garage is empty!</h2>
+    <div th:case="*">
+        <table>
+            <thead st>
+            <tr>
+                <th>Date Work</th>
+                <th>Master</th>
+                <th>Service</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="work : ${works}">
+                <td th:text="${work.getDateWork()}"></td>
+                <td th:text="${work.getMaster().getName()}"></td>
+                <td th:text="${work.getService().getName()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<br>
+<a th:text="'Total sum:' + ${sum}"> </a>
+<br/>
+<hr/>
+
+</body>
+</html>
